@@ -29,6 +29,14 @@ class TestCalculator(unittest.TestCase):
         calc.input_number('=')
         self.assertEqual(calc.display(),'6')
 
+    def test_calcular_10_div_5(self):
+        calc=Calculator()
+        calc.input_number('1')
+        calc.input_number('0')
+        calc.input_number('/')
+        calc.input_number('5')
+        calc.input_number('=')
+        self.assertEqual(calc.display(),'2')
 
 
 if __name__ == '__main__':
