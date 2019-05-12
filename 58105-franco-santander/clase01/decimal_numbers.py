@@ -1,9 +1,9 @@
 def decimal_to_roman(decimal_number):
-    roman_number = 0
+    roman_number = ()
     
     for number in decimal_number:
         if number == 1:
-            roman_number = 'I'
+            roman_number.append('I') 
             pass
         pass
-    return decimal_number
+    return roman_number
