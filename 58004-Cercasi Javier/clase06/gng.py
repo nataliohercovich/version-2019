@@ -1,0 +1,2 @@
+class HumanAgainstComputerGame(object):
+    
