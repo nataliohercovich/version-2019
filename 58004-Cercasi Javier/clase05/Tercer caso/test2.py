@@ -13,7 +13,7 @@ class TestCalc(unittest.TestCase):
         calc.ingresar('=')
         self.assertEqual(calc.display(),'6')
 
-    '''def test_calcular_1_mas_1(self):
+    def test_calcular_1_mas_1(self):
         calc=Calculadora()  #clase que va a recibir cada uno de los ingresos
         calc.ingresar('1')
         calc.ingresar('+')
@@ -27,7 +27,7 @@ class TestCalc(unittest.TestCase):
         calc.ingresar('*')
         calc.ingresar('5')
         calc.ingresar('=')
-        self.assertEqual(calc.display(),'5')'''
+        self.assertEqual(calc.display(),'5')
 
     
 if __name__ == '__main__':
