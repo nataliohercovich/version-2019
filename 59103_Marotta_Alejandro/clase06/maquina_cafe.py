@@ -10,7 +10,7 @@ class Cafe:
    
 class CafeChico (Cafe):
    
-    def cafe_con_azucar (self,eleccion): # 1 para si y cero para no
+    def cafe_con_azucar (self,eleccion): # 1 para si y cero para no, la maquina no tiene mas botones
         dulce = int (eleccion)
         if dulce ==1:
             self.azucar -= 5
@@ -20,7 +20,7 @@ class CafeChico (Cafe):
         else:
             self.agua -=110
             self.gramoscafe -= 10
-            
+                   
              
     
         
@@ -51,6 +51,52 @@ class CafePremium (Cafe): #es mas grande
             self.azucar -= 5
         else:
             pass
+
+
+class Sensor:  #controla que tengan los valores minimos como para poder funcionar correctamente
+
+    def controlar(self,agua,gramoscafe,azucar,leche):
+        self.agua = agua
+        self.gramoscafe = gramoscafe
+        self.azucar = azucar
+        self.leche = leche
+
+        if agua <130:
+            print ('No hay agua, debe reiniciar la maquina')
+            return False
+
+        if gramoscafe <10:
+            print ('No hay cafe, debe reiniciar la maquina')
+            return False
+
+
+        if azucar < 5 and leche < 40:
+            reinicio = input('No hay ni azucar ni leche , desea tomarlo puro? si/no ')
+            if reinicio == 'si':
+                return True
+            else :
+                print ('No hay azucar ni leche  ,debe cargar la maquina')
+                return False
+
+
+        if azucar < 5:
+            reinicio = input('No hay azucar, desea tomarlo amargo? si/no ')
+            if reinicio == 'si':
+                return True
+            else :
+                print ('No hay azucar ,debe cargar la maquina')
+                return False
+
+        if leche < 40:
+            reinicio = input('No hay leche, desea tomarlo puro? si/no ')
+            if reinicio == 'si':
+                return True
+            else :
+                print ('No hay leche ,debe cargar la maquina')
+                return False
+        else:
+            return True
+
 
         
 
