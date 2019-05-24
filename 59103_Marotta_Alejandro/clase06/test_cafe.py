@@ -2,6 +2,10 @@ import unittest
 from maquina_cafe import Cafe
 from maquina_cafe import CafeChico
 from maquina_cafe import CafePremium
+from maquina_cafe import Sensor
+
+
+#en algunos casos el valor depende de la respuesta
 
 class TestCafe(unittest.TestCase):
           
@@ -37,6 +41,51 @@ class TestCafe(unittest.TestCase):
         cafep.cafe_con_azucar(0)
         cafep.cafe_con_leche(0)    
         self.assertEqual(cafep.__dict__, {'agua': 980, 'gramoscafe': 1100, 'azucar': 1110, 'leche': 1110})
+
+    def test_sensor_1(self):      
+        sensor = Sensor() 
+        print()      
+        print ('responder no')
+
+        self.assertEqual(sensor.controlar(1000,1000,0,1000)  , False)
+
+    def test_sensor_2(self):      
+        sensor = Sensor()      
+        print()       
+        print ('responder si')
+        self.assertEqual(sensor.controlar(1000,1000,0,1000)  , True)
+
+
+    def test_sensor_3(self):      
+        sensor = Sensor()       
+        
+        self.assertEqual(sensor.controlar(0,1000,100,1000)  , False)
+
+    def test_sensor_4(self):      
+        sensor = Sensor()       
+        
+        self.assertEqual(sensor.controlar(1000,4,100,1000)  , False)
+
+
+    def test_sensor_5(self):      
+        sensor = Sensor() 
+        print()            
+        print ('responder no')
+        self.assertEqual(sensor.controlar(1000,100,100,5)  , False)
+
+    def test_sensor_6(self):      
+        sensor = Sensor()  
+        print()           
+        print ('responder si')
+        self.assertEqual(sensor.controlar(1000,100,100,5)  , True)
+
+
+    
+
+
+
+
+
 
   
 
