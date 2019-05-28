@@ -1,10 +1,35 @@
 
 import unittest
-from cafe import Maquina
+from cafe import (Maquinabasica)
 
-class TestHumanAgainstComputerGame(unittest.TestCase):
-    def test_play_small(self):
-       self.game = HumanAgainstComputerGame()   #Esto es lo mismo que lo de arriba,pero para no repetir
-       self.game.secret_number = 78
-       self.assertEquals(self.game.play(50), 'My number is bigger')
-       self.assertTrue(self.game.is_playing)
+
+class Test_CafeteraBasica(unittest.TestCase):
+    def setUp(self):
+        self.cafeB = Maquinabasica()
+
+    def test_cafe_1(self):
+        self.assertEqual(self.cafeB.sensor_moneda(1), 'Procesando, aguarde un momento')
+        self.assertEqual(self.cafeB.CantidadAgua(10), '10ml de agua')
+        self.assertEqual(self.cafeB.CantidadCafe(5), '5g. de cafe')
+        self.assertEqual(self.cafeB.CantidadAzucar(0), '0g. de azucar')
+
+    def test_cafe_2(self):
+        self.assertEqual(self.cafeB.sensor_moneda(1), 'Procesando, aguarde un momento')
+        self.assertEqual(self.cafeB.CantidadAgua(10), '10ml de agua')
+        self.assertEqual(self.cafeB.CantidadCafe(15), '15g. de cafe')
+        self.assertEqual(self.cafeB.CantidadAzucar(3), '3g. de azucar')
+
+    
+    def test_cafe_SinAgua(self):
+        self.assertEqual(self.cafeB.sensor_moneda(1), 'Procesando, aguarde un momento')
+        self.assertEqual(self.cafeB.CantidadAgua(1001),'Disculpe, cantidad de agua no disponible')
+    def test_cafe_SinCafe(self):
+        self.assertEqual(self.cafeB.sensor_moneda(1), 'Procesando, aguarde un momento')
+        self.assertEqual(self.cafeB.CantidadAgua(10), '10ml de agua')
+        self.assertEqual(self.cafeB.CantidadCafe(101), 'Disculpe, cantidad de cafe no disponible')
+
+    def test_cafe_SinMoneda(self):
+        self.assertEqual(self.cafeB.sensor_moneda(0), 'Ingrese una moneda')
+
+if __name__ == "__main__":
+    unittest.main()
