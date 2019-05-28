@@ -37,6 +37,5 @@ def roman_to_decimal(roman_number):
             decimal_number +=1000
             
         ant=letter
-
     return decimal_number
         
