@@ -12,7 +12,7 @@ class HumanAgainstComputerGame(Game):       #como tambien es un juego, puedo lla
         self.is_playing=True #nos ahorramos esto con la clase game
         self.secret_number= random.randrange(101)       #self es un objeto,para reutilizarlo
 
-        '''super()__init__() :'''     #aca llama al init de la clase Game, es como la general
+        '''super().__init__() '''    #aca llama al init de la clase Game, es como la general
 
     def pensar_numero(self,number):
         if self.secret_number> number:

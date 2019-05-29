@@ -8,30 +8,26 @@ class Maquinabasica (object):
         self.working=False
 
     def sensor_moneda (self,mon):
-        
-        if mon==0:
+        self.moneda=mon
+        if self.moneda==0:
             self.working=False
             return ('Ingrese una moneda')
 
-        if mon ==1:
+        if self.moneda ==1:
             if self.nivel_agua==0:
-                self.moneda= self.moneda -1
                 return ('Disculpe,no poseo agua')
-                
+                self.moneda= self.moneda -1
 
             if self.cant_cafe==0:
-                self.moneda= self.moneda -1
                 return ('Disculpe,no poseo cafe')
-                
+                self.moneda= self.moneda -1
 
             if self.azucar==0:
-                self.moneda= self.moneda -1
                 return ('Disculpe,no poseo azucar')
-              
+                self.moneda= self.moneda -1
 
             else:
                 self.working=True
-                self.moneda= self.moneda+1
                 return ('Procesando, aguarde un momento')
 
 
