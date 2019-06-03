@@ -1,64 +1,147 @@
-class Maquinabasica (object):
-
+class pagoCafetera():
     def __init__(self):
-        self.nivel_agua=1000
-        self.cant_cafe=100
-        self.azucar=1000
-        self.moneda=0
-        self.working=False
+        self.moneda = False
+        self.monedaCont = 0
+        self.haciendoCafe = False
+        self.agua = 1000
+        self.cafe = 100
+        self.azucar = 100
 
-    def sensor_moneda (self,mon):
-        
-        if mon==0:
-            self.working=False
-            return ('Ingrese una moneda')
+    def pago(self, moneda):
+        if moneda == True:
+            if self.agua == 0:
+                self.moneda = False
+                return 'No hay agua'
 
-        if mon ==1:
-            if self.nivel_agua==0:
-                self.moneda = self.moneda -1
-                return ('Disculpe,no poseo agua')
-                
+            if self.cafe == 0:
+                self.moneda = False
+                return 'No hay cafe'
 
-            if self.cant_cafe==0:
-                self.moneda = self.moneda -1
-                return ('Disculpe,no poseo cafe')
-                
-
-            if self.azucar==0:
-                self.moneda= self.moneda -1
-                return ('Disculpe,no poseo azucar')
-              
+            if self.azucar == 0:
+                self.moneda = False
+                return 'No hay azucar'
 
             else:
-                self.working=True
-                self.moneda= self.moneda+1
-                return ('Procesando, aguarde un momento')
+
+                self.haciendoCafe = True
+                self.monedaCont += 1
+                return 'Haciendo cafe'
+
+    def terminado(self):
+        if self.haciendoCafe == True:
+            self.haciendoCafe = False
+            return 'Cafe hecho'
+
+        else:
+            return 'No puedo hacer el cafe' 
+
+class cafeteraBasica(pagoCafetera):
+    def __init__(self):
+        super().__init__()
+
+    def aguaCant(self, aguaML):
+        if self.haciendoCafe == True:
+            if int(aguaML) > self.agua:
+                self.haciendoCafe = False
+                self.agua = 1000
+                self.cafe = 100
+                self.azucar = 100
+                return 'No hay agua suficiente'
+            else:
+                self.agua -= int(aguaML)
+                return 'Con ' + str(aguaML) + 'ml de agua'
+
+    def cafeCant(self, cafeG):
+        if self.haciendoCafe == True:
+            if cafeG > self.cafe:
+                self.agua = 1000
+                self.cafe = 100
+                self.azucar = 100
+                self.haciendoCafe = False
+                return 'No hay cafe suficiente'
+            else:
+                self.cafe -= cafeG
+                return 'Con ' + str(cafeG) + 'g de cafe'
+
+    def azucarCant(self, azucarG):
+        if self.haciendoCafe == True:
+            if azucarG > self.azucar:
+                self.agua = 1000
+                self.cafe = 100
+                self.azucar = 100
+                self.haciendoCafe = False
+                return 'No hay azucar suficiente'
+                
+            if azucarG == 0:
+                return 'Sin azucar'
+            else:
+                self.azucar -= azucarG
+                return 'Con ' + str(azucarG) + 'g de azucar' 
 
 
-    def CantidadAgua (self,cantidad):
-        if self.working==True:
-            if cantidad > self.nivel_agua:
-                return ('Disculpe, cantidad de agua no disponible')
-                self.working=False
-            if cantidad < self.nivel_agua:
-                self.working=True
-                self.nivel_agua= self.nivel_agua-cantidad
-                return (str(cantidad)+'ml de agua')
+class cafeteraPremium(pagoCafetera):
+    def __init__(self):
+        super().__init__()   
 
-    def CantidadCafe (self,cafe):
-        if self.working==True:
-            if cafe > self.cant_cafe:
-                self.working=False
-                return ('Disculpe, cantidad de cafe no disponible')
-            if cafe < self.cant_cafe:
-                self.cant_cafe= self.cant_cafe - cafe
-                return (str(cafe)+'g. de cafe')
+    def vasoSN(self, vasoOP):
+        if vasoOP == False:
+            self.haciendoCafe = False
+            return 'Ponga un vaso'
 
-    def CantidadAzucar (self,azucar):
-        if self.working==True:
-            if azucar > self.azucar:
-                self.working=False
-                return ('Disculpe, cantidad de azucar no disponible')
-            if azucar < self.azucar:
-                self.azucar= self.azucar - azucar
-                return (str(azucar)+'g. de azucar')
+    def aguaCantP(self, aguaMLP):
+        if self.haciendoCafe == True:
+            if int(aguaMLP) > self.agua:
+                self.agua = 1000
+                self.cafe = 100
+                self.azucar = 100
+                self.haciendoCafe = False
+                return 'No hay agua suficiente'
+
+            else:
+                self.agua -= int(aguaMLP)
+                return 'Con ' + str(aguaMLP) + 'ml de agua'
+
+    def cafeCantP(self, cafeGP):
+        if self.haciendoCafe == True:
+            if cafeGP > self.cafe:
+                self.agua = 1000
+                self.cafe = 100
+                self.azucar = 100
+                self.haciendoCafe = False
+                return 'No hay cafe suficiente'
+
+            else:
+                self.cafe -= cafeGP
+                return 'Con ' + str(cafeGP) + 'g de cafe'
+
+    def azucarCantP(self, azucarGP):
+        if self.haciendoCafe == True:
+            if azucarGP > self.azucar:
+                self.agua = 1000
+                self.cafe = 100
+                self.azucar = 100
+                self.haciendoCafe = False
+                return 'No hay azucar suficiente'
+
+            if azucarGP == 0:
+                return 'Sin azucar'
+            else:
+                self.azucar -= azucarGP
+                return 'Con ' + str(azucarGP) + 'g de azucar'  
+
+    def lecheCant(self, lecheSN):
+        if self.haciendoCafe == True:
+            if lecheSN == True:
+                return 'Con leche'
+            if lecheSN == False:
+                return 'Sin leche'
+
+    def hacerCafeP(self):
+        if self.haciendoCafe == True:
+            self.haciendoCafe = False
+            return 'Cafe hecho'
+        else:
+            self.agua = 1000
+            self.cafe = 100
+            self.azucar = 100
+            return 'No puedo hacer el cafe'
