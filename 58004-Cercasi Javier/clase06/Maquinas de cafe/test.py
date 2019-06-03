@@ -13,7 +13,6 @@ class Test_CafeteraBasica(unittest.TestCase):
         self.assertEqual(self.cafeB.cantidadCafe(5), '5g. de cafe')
         self.assertEqual(self.cafeB.cantidadAzucar(0), '0g. de azucar')
         self.assertEqual(self.cafeB.terminado(),'Cafe hecho')       #(Agregar () en terminado)
-
         #Ahora restare los ingredientes de la maquina:
         self.assertEqual(self.cafeB.nivel_agua,990)
         self.assertEqual(self.cafeB.cant_cafe,95)
@@ -26,6 +25,7 @@ class Test_CafeteraBasica(unittest.TestCase):
         self.assertEqual(self.cafeB.cantidadCafe(15), '15g. de cafe')
         self.assertEqual(self.cafeB.cantidadAzucar(3), '3g. de azucar')
         self.assertEqual(self.cafeB.terminado(),'Cafe hecho')
+        
         self.assertEqual(self.cafeB.nivel_agua,990)
         self.assertEqual(self.cafeB.cant_cafe,85)
         self.assertEqual(self.cafeB.azucar,997)
