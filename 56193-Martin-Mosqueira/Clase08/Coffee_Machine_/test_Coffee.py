@@ -1,43 +1,36 @@
 import unittest
 from Class_Coffee import Coffee
 from Class_Coffee_Premium import Coffee_Premium
-from Coffee_Machine import coffee_machine
+from Sensores import VasoSensor
+from Sensores import MonederoSensor
 
 class Test_Coffee_Machine(unittest.TestCase):
-    def test_water_quantity0(self):
-        result=Coffee(3).water_quantity()
-        self.assertEqual(result,'250ml')
-    def test_water_quantity1(self):
-        result=Coffee(4).water_quantity()
-        self.assertEqual(result,'add more water')
-    def test_water_quantity2(self):
-        result=Coffee(5).water_quantity()
-        self.assertEqual(result,'add more water')
 
-    def test_coffee_quantity(self):
-        result=Coffee(2).coffee_quantity()
-        self.assertEqual(result,'30g')
-    def test_coffee_quantity(self):
-        result=Coffee(5).coffee_quantity()
-        self.assertEqual(result,'add more coffee')
+    def test_cafe_cantidad0(self):
+        result=Coffee().cafe_cantidad(2)
+        self.assertEqual(result,'30g500ml')
 
-    def test_sugar_quantity0(self):
-        result=Coffee(2).sugar_quantity()
-        self.assertEqual(result,'584g')
-    def test_sugar_quantity1(self):
-        result=Coffee(0).sugar_quantity()
-        self.assertEqual(result,'600g')
+    def test_azucar_cantidad_true0(self):
+        result=Coffee().azucar_cantidad(3)
+        self.assertEqual(result,'576g')
 
-    def test_milk_quantity(self):
-        result=Coffee_Premium(2).milk_quantity()
-        self.assertEqual(result,'760ml')
+    def test_leche_cantidad(self):
+        result=Coffee_Premium().leche_cantidad(5)
+        self.assertEqual(result,'400ml')
+    def test_leche_cantidad(self):
+        result=Coffee_Premium().leche_cantidad(3)
+        self.assertEqual(result,'640ml')
 
-    def test_coffee_machine(self):
-        result=coffee_machine(0)
-        self.assertEqual(result,'wrong option')
-    def test_coffee_machine(self):
-        result=coffee_machine(2)
-        self.assertEqual(result,'ok')
+    def test_controlar_vaso(self):
+        result=VasoSensor().controlar_vaso()
+        self.assertFalse(result)
+    def test_controlar_dinero0(self):
+        result=MonederoSensor().controlar_dinero(1)
+        self.assertTrue(result)
+    def test_contolar_dinero1(self):
+        result=MonederoSensor().controlar_dinero(10)
+        self.assertFalse(result)
+
 
 if __name__ == '__main__':
     unittest.main()

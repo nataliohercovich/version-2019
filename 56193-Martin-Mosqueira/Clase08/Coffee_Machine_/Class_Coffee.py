@@ -1,33 +1,32 @@
+
 class Coffee():
-    def __init__(self,currency):
-        self.water=1000
-        self.coffee=50
-        self.sugar=600
-        self.total=0
-        self.currency=currency
+    def __init__(self):
+        self.agua=1000
+        self.cafe=50
+        self.azucar=600
+        self.seleccionar_azucar=False
 
-
-    def water_quantity(self):
-        self.water=self.water-250*self.currency
-        if self.water <= 0:
-            return 'add more water'
+    def control_cantidad(self):
+        if self.agua >= 250 and self.cafe >= 10 and self.azucar >= 8:
+            return True
         else:
-            return str(self.water)+'ml'
+            return False
 
-    def coffee_quantity(self):
-        self.coffee=self.coffee-10*self.currency
-        if self.coffee <= 0:
-            return 'add more coffee'
-        else:
-            return str(self.coffee)+'g'
+    def cafe_cantidad(self,moneda):
+        self.cafe=self.cafe-10*moneda
+        self.agua = self.agua - 250 * moneda
 
-    def sugar_quantity(self):
-        for line in range(self.currency):
-            self.total=str(input('Sugar coffee'+str(line+1)+': s/n'))
-            if self.total == 's':
-                self.sugar=self.sugar-8
-        if self.sugar <= 0:
-            return 'add more sugar'
-        else:
-            return str(self.sugar)+'g'
+        return str(self.cafe)+'g'+str(self.agua)+'ml'
+
+    def colocar_azucar(self):
+        self.seleccionar_azucar=True
+
+
+    def azucar_cantidad(self,moneda):
+        self.azucar=self.azucar-8*moneda
+
+        return str(self.azucar)+'g'
+
+
+
 

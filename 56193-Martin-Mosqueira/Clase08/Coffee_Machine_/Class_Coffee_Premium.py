@@ -1,16 +1,22 @@
 from Class_Coffee import Coffee
 
 class Coffee_Premium(Coffee):
-    def __init__(self,currency):
-        super(Coffee_Premium,self).__init__(currency)
-        self.milk=1000
+    def __init__(self):
+        super(Coffee_Premium,self).__init__()
+        self.leche=1000
+        self.seleccionar_leche=False
 
-    def milk_quantity(self):
-        for line in range(self.currency):
-            self.total=str(input('Milk coffee'+str(line+1)+': s/n'))
-            if self.total == 's':
-                self.milk=self.milk-120
-        if self.milk <= 0:
-            return 'add more milk'
+    def control_cantidad_leche(self):
+        if self.leche >= 120:
+            return True
         else:
-            return str(self.milk)+'ml'
+            return False
+
+    def leche_cantidad(self,moneda):
+        self.leche=self.leche-120*moneda
+
+        return str(self.leche)+'ml'
+
+    def colocar_leche(self):
+        self.seleccionar_leche=True
+
