@@ -14,3 +14,17 @@ def factorial(numero):
 
 
 
+def main()
+     lista = []
+     def hola(number):
+        while pr < 16:
+            pe = int(number/(16*16))
+            pr = number % (16*16)
+            lista.append(pe)
+            hexad_number = lista
+            return hexad_number
+
+     number = input(921)
+     hexad_number = hola (number)
+     print (hexad_number) 
+main()
